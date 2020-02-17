@@ -12,7 +12,7 @@ export const theme = createMuiTheme({
     },
     secondary: {
       main: '#222226',
-      light: 'white',
+      light: '#000000',
     },
   },
   overrides: {
@@ -21,7 +21,7 @@ export const theme = createMuiTheme({
       // Name of the rule
       text: {
         // Some CSS
-        color: 'white',
+        color: '#000000',
       },
     },
   },

@@ -4,7 +4,7 @@ import './App.css';
 import { getUser, getSongs, getArtists } from './store';
 import TopSongs from './TopSongs';
 import Button from '@material-ui/core/Button';
-
+import EnhancedTable from './EnhancedTable';
 class Dashboard extends React.Component {
   constructor() {
     super();
@@ -25,13 +25,14 @@ class Dashboard extends React.Component {
     const songs = this.props.songs;
     return (
       <React.Fragment>
-        {!this.state.isLoading && username && songs ? (
+        {!this.state.isLoading ? (
           <div>
             <div>
               <h1>Welcome {username}</h1>
             </div>
 
-            <TopSongs songs={songs} />
+            {/* <TopSongs songs={songs} /> */}
+            <EnhancedTable songs={songs} />
           </div>
         ) : (
           <div>

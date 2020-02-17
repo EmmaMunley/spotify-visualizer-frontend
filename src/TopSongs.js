@@ -1,12 +1,6 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import EnhancedTableCopy from './EnhancedTableCopy';
 
 const useStyles = makeStyles({
   table: {
@@ -23,57 +17,30 @@ const useStyles = makeStyles({
 export default function TopSongs(props) {
   const classes = useStyles();
   const songs = props.songs;
-  let count = 1;
+
+  const headCells = [
+    { id: 'name', numeric: false, disablePadding: false, label: 'Title' },
+    { id: 'artist', numeric: false, disablePadding: false, label: 'Artist' },
+    { id: 'album', numeric: false, disablePadding: false, label: 'Album' },
+    { id: 'duration', numeric: true, disablePadding: false, label: 'Duration' },
+  ];
+
+  const rows = songs.map(song => [
+    { url: song.song_url, label: song.name },
+    { url: song.artist_url, label: song.artist },
+    { url: song.album_url, label: song.album },
+    { label: song.duration },
+  ]);
 
   return (
     <Fragment>
       <h2>Top Songs:</h2>
       {props.songs ? (
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.header} align="left">
-                  #
-                </TableCell>
-                <TableCell className={classes.header} align="left">
-                  Song
-                </TableCell>
-                <TableCell className={classes.header} align="left">
-                  Artist
-                </TableCell>
-                <TableCell className={classes.header} align="left">
-                  Album
-                </TableCell>
-                <TableCell className={classes.header} align="left">
-                  Duration
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {songs.map(song => (
-                <TableRow key={song.name}>
-                  <TableCell component="th" scope="row" align="left">
-                    {count++}
-                  </TableCell>
-                  <TableCell component="th" scope="row" align="left">
-                    <a href={song.song_url}>{song.name} </a>
-                  </TableCell>
-
-                  <TableCell align="left">
-                    <a href={song.artist_url}>{song.artist} </a>
-                  </TableCell>
-
-                  <TableCell align="left">
-                    <a href={song.album_url}>{song.album} </a>
-                  </TableCell>
-                  <TableCell align="left">{song.duration}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <EnhancedTableCopy
+          headCells={headCells}
+          rows={rows}
+          title="Top Songs"
+        ></EnhancedTableCopy>
       ) : null}
     </Fragment>
   );
