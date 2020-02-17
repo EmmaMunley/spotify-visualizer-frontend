@@ -40,7 +40,7 @@ export const getSongs = accessToken => async dispatch => {
         song_url: song.external_urls.spotify,
       };
     });
-    console.log('songs', songs);
+
     dispatch(gotSongs(songs));
   } catch (err) {
     console.error(err);

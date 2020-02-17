@@ -1,8 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Circular-Pro-Black', 'Circular-Pro-Book', 'Circular-Pro-Bold',
+    'Helvetica', 'Arial', 'sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +9,35 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: 'Circular-Pro-Book';
+  src: url('./fonts/lineto-circular-pro-book.eot');
+  src: url('./fonts/lineto-circular-pro-book.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/lineto-circular-pro-book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circular-Pro-Bold';
+  src: url('./fonts/lineto-circular-pro-bold.eot');
+  src: url('./fonts/lineto-circular-pro-bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/lineto-circular-pro-bold.woff') format('woff'),
+    url('./fonts/lineto-circular-pro-bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Circular-Pro-Black';
+  src: url('./fonts/lineto-circular-black.eot');
+  src: url('./fonts/lineto-circular-black.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/lineto-circular-black.woff') format('woff'),
+    url('./fonts/lineto-circular-black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

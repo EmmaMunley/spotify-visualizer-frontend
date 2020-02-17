@@ -2,33 +2,46 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { getUser, getSongs, getArtists } from './store';
+import TopSongs from './TopSongs';
+import Button from '@material-ui/core/Button';
 
 class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = { isLoading: true };
-    this.loginRedirect = this.loginRedirect.bind(this);
   }
   async componentDidMount() {
     let params = new URLSearchParams(window.location.search);
     let accessToken = params.get('access_token');
 
-    this.props.getUser(accessToken);
-    this.props.getArtists(accessToken);
-    this.props.getSongs(accessToken);
+    await this.props.getUser(accessToken);
+    await this.props.getArtists(accessToken);
+    await this.props.getSongs(accessToken);
+    this.setState({ isLoading: false });
   }
-  loginRedirect() {
-    let path = '/login';
-    this.props.history.push(path);
-  }
+
   render() {
+    const username = this.props.user.username;
+    const songs = this.props.songs;
     return (
       <React.Fragment>
-        {!this.state.isLoading ? (
-          <div>Welcome {this.state.user.username}</div>
+        {!this.state.isLoading && username && songs ? (
+          <div>
+            <div>
+              <h1>Welcome {username}</h1>
+            </div>
+
+            <TopSongs songs={songs} />
+          </div>
         ) : (
           <div>
-            <button onClick={this.loginRedirect}>Sign In With Spotify</button>
+            <div className="center">
+              <a href="http://localhost:8888/login">
+                <Button variant="contained" color="primary" size="large">
+                  Connect Spotify
+                </Button>
+              </a>
+            </div>
           </div>
         )}
       </React.Fragment>
